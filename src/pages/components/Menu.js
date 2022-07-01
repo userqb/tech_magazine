@@ -1,27 +1,28 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const Category = () => {
   return (
     <ul className="container__menu">
       <li className="container__item">
-        <a className="container__link" href="#">
+        <Link to="/" className="container__link">
           Бренды
-        </a>
+        </Link>
       </li>
       <li className="container__item">
-        <a className="container__link" href="#">
+        <Link to="/" className="container__link">
           От 90 руб
-        </a>
+        </Link>
       </li>
       <li className="container__item">
-        <a className="container__link" href="#">
+        <Link to="/" className="container__link">
           Распродажи
-        </a>
+        </Link>
       </li>
       <li className="container__item">
-        <a className="container__link" href="#">
+        <Link to="/" className="container__link">
           Скидки
-        </a>
+        </Link>
       </li>
     </ul>
   );

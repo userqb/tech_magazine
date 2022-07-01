@@ -9,10 +9,7 @@ import { Basket } from "./pages/Basket";
 function App() {
   return (
     <div className="App">
-      <div></div>
-      <div></div>
       <Header />
-      <div>dstgfdg</div>
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/basket" element={<Basket />} />
