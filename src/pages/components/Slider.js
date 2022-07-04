@@ -1,10 +1,10 @@
 import React from "react";
-import slider1 from "./img/slider1.jpg";
-import slider2 from "./img/slider2.jpg";
-import slider3 from "./img/slider3.jpg";
-import slider4 from "./img/slider4.jpg";
+import slider1 from "../../images/slider1.jpg";
+import slider2 from "../../images/slider2.jpg";
+import slider3 from "../../images/slider3.jpg";
+import slider4 from "../../images/slider4.jpg";
 
-export const MainSlider = () => {
+export const Slider = () => {
   const [activeItem, setActiveItem] = React.useState(0);
 
   const images = [

@@ -1,4 +1,5 @@
 import React from "react";
+import logo from "../../images/logo.png";
 
 export const Footer = () => {
   return (
@@ -6,7 +7,7 @@ export const Footer = () => {
       <div className="footer__inner">
         <div className="footer__logo">
           <a className="logo" href="#">
-            <img className="logo__img" src="images/logo.png" alt="AliLiho" />
+            <img className="logo__img" src={logo} alt="AliLiho" />
           </a>
         </div>
         <div>

@@ -35,10 +35,21 @@ const BasketSlice = createSlice({
       state.items = [];
       state.totalPrice = 0;
     },
+    clearBasket(state) {
+      state.items = [];
+      state.totalPrice = 0;
+    },
+    setOrderProduct(state, action) {},
   },
 });
 
-export const { setProductBasket, clearItem, removeItem, minusItem } =
-  BasketSlice.actions;
+export const {
+  setProductBasket,
+  clearItem,
+  removeItem,
+  minusItem,
+  clearBasket,
+  setOrderProduct,
+} = BasketSlice.actions;
 
 export default BasketSlice.reducer;

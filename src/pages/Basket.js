@@ -1,16 +1,26 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { clearBasket } from "../redux_toolkit/slices/basket_slice";
+import { MyButton } from "../UI/MyButton";
+import { BasketProduct } from "./components/BasketProduct";
 import { EmptyBasket } from "./components/EmptyBasket";
-import { Product } from "./components/Product";
 
 export const Basket = () => {
   const { items, totalPrice } = useSelector(({ basket }) => basket);
+
+  const dispatch = useDispatch();
 
   const totalCount = items.reduce((sum, item) => sum + item.count, 0);
 
   if (!totalCount) {
     return <EmptyBasket />;
   }
+
+  const ClickClearBasket = () => {
+    if (window.confirm("Вы действительно хотите очистить корзину")) {
+      dispatch(clearBasket());
+    }
+  };
 
   return (
     <div className="basket">
@@ -19,9 +29,7 @@ export const Basket = () => {
           <div>
             <div className="basket_products">
               {items.map((item) => {
-                return (
-                  <Product className="basket-product" key={item.id} {...item} />
-                );
+                return <BasketProduct key={item.id} {...item} />;
               })}
             </div>
           </div>
@@ -41,8 +49,15 @@ export const Basket = () => {
                 <h2>{totalPrice}руб.</h2>
               </div>
             </div>
-            <div className="basket__btn">
-              <button className="btn">Купить</button>
+            <div className="basket__prices__btns">
+              <div>
+                <MyButton onClick={ClickClearBasket} className="btn_red">
+                  Очистить корзину
+                </MyButton>
+              </div>
+              <div className="basket__btn">
+                <MyButton className="btn">Купить</MyButton>
+              </div>
             </div>
           </div>
         </div>

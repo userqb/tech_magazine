@@ -10,7 +10,7 @@ const TestSlice = createSlice({
   reducers: {
     setProductId(state, action) {
       console.log(action);
-      state.productId = action.payload;
+      state.productId = action.payload.id;
     },
   },
 });

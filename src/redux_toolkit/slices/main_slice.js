@@ -32,9 +32,9 @@ const MainSlice = createSlice({
     },
     [fetchProducts.fulfilled]: (state, action) => {
       state.items = action.payload;
-      state.status = "resolved";
+      state.status = "completed";
     },
-    [fetchProducts.rejected]: (state, action) => {
+    [fetchProducts.rejected]: (state) => {
       state.status = "error";
       state.items = [];
     },

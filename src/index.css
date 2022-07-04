@@ -136,18 +136,6 @@ a {
   padding: 5px;
 }
 
-.container__slider {
-  position: relative;
-  margin-left: 20px;
-  width: 80%;
-  height: 300px;
-  margin: auto;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-}
-
 .container__link {
   font-size: 20px;
 }
@@ -173,6 +161,7 @@ a {
   border: none;
   outline: none;
   border-radius: 20px;
+  cursor: pointer;
 }
 
 .registration__btn {
@@ -235,12 +224,9 @@ a {
   display: flex;
 }
 
-/* .footer__networks {
+.basket {
+  margin-top: 30px;
 }
-.footer__magazine {
-}
-.footer__info {
-} */
 
 .basket__logo {
   color: white;
@@ -262,11 +248,23 @@ a {
   color: red;
 }
 
+.container__slider {
+  position: relative;
+  margin-left: 20px;
+  width: 80%;
+  height: 300px;
+  margin: auto;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
 .slider__img {
   position: absolute;
   width: 100%;
   height: 300px;
-  border-radius: 20px;
   transition: all 0.2s;
 }
 
@@ -316,13 +314,21 @@ a {
 .btn {
   border: none;
   outline: none;
-  background-color: red;
+  background-color: #4169e1;
   color: #fff;
   padding: 8px;
   border-radius: 10px;
+  cursor: pointer;
 }
 
-.reviews-inner {
+.btn_red {
+  border: none;
+  outline: none;
+  background-color: #ff0000;
+  color: #fff;
+  padding: 8px;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
 .reviews__add {
@@ -348,5 +354,39 @@ a {
   margin: 10px;
 }
 
-.review_post {
+.basket_product__svg {
+  cursor: pointer;
+}
+
+.basket_product__svg:before {
+  color: red;
+}
+
+.basket__prices__btns {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.review_product {
+  width: 800px;
+  height: auto;
+  border-radius: 10px;
+  background-color: #fff;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.review_product-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__basket {
+  margin-left: 20px;
+}
+
+.reviews {
+  margin-top: 30px;
 }

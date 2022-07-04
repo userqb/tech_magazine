@@ -1,16 +1,22 @@
 import React from "react";
-import { Product } from "./components/ProductReviews";
+import { Product } from "./components/Product";
+import { MyButton } from "./../UI/MyButton";
+import { ReviewToProduct } from "./components/ReviewToProduct";
+import { useDispatch } from "react-redux";
 
 export const Reviews = () => {
-  const [inputValue, setInputValue] = React.useState("");
-  const [addClick, setAddClick] = React.useState([]);
+  const [review, setReview] = React.useState([]);
+  const [value, setValue] = React.useState({ body: "" });
 
-  const addReview = (e) => {
-    if (inputValue === "") {
-      alert("Напишите текст");
-    } else {
-      setAddClick([...addClick]);
-    }
+  const dispatch = useDispatch();
+
+  const addReviewClick = () => {
+    return (
+      value.body === ""
+        ? alert("Заполните форму отзыва!")
+        : setReview([...review, value]),
+      setValue({ body: "" })
+    );
   };
 
   return (
@@ -25,19 +31,21 @@ export const Reviews = () => {
           </div>
           <h2>Добавить отзыв</h2>
           <div className="reviews__add">
-            <div>
-              <input
-                value={inputValue}
-                className="search"
-                onChange={(e) => setInputValue(e.target.value)}
-                placeholder="Ваш отзыв..."
-              />
-            </div>
-            <button className="btn" onClick={addReview}>
+            <input
+              className="search"
+              onChange={(e) => setValue({ ...value, body: e.target.value })}
+              value={value.body}
+              type="text"
+              placeholder="Напишите ваш отзыв..."
+            />
+            <MyButton onClick={addReviewClick} className="btn">
               Добавить
-            </button>
+            </MyButton>
           </div>
         </div>
+        {review.map((item) => (
+          <ReviewToProduct key={item.id} {...item} />
+        ))}
       </div>
     </div>
   );
