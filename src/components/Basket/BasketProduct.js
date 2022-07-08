@@ -1,16 +1,15 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import {
   minusItem,
   removeItem,
   setProductBasket,
 } from "../../redux_toolkit/slices/basket_slice";
+import { setOrderProduct } from "../../redux_toolkit/slices/test_slice";
 import { MyButton } from "./../../UI/MyButton";
 
 export const BasketProduct = ({ id, name, image, price, count }) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const onClickMinus = () => {
     dispatch(minusItem({ id }));
@@ -27,9 +26,8 @@ export const BasketProduct = ({ id, name, image, price, count }) => {
   };
 
   const onClickOrder = () => {
-    const goHome = () => navigate("/");
-    // let obj = { id, name, image };
-    // dispatch(setOrderProduct(obj));
+    let obj = { id, name, image };
+    dispatch(setOrderProduct(obj));
   };
 
   return (

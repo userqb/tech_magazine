@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../../images/logo.png";
+import logo from "../images/logo.png";
 
 export const Header = () => {
   return (
@@ -31,7 +31,15 @@ export const Header = () => {
             </Link>
           </div>
           <div className="header__basket">
-            <Link className="basket__link" to="/registration_form">
+            <Link className="basket__link" to="/account">
+              <img
+                className="basket__logo"
+                src="https://img.icons8.com/material-outlined/24/000000/user-male-circle.png"
+              />
+            </Link>
+          </div>
+          <div className="header__basket">
+            <Link className="basket__link" to="/order">
               <img
                 className="basket__logo"
                 src="https://img.icons8.com/material-outlined/24/000000/user-male-circle.png"

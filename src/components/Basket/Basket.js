@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { clearBasket } from "../redux_toolkit/slices/basket_slice";
-import { MyButton } from "../UI/MyButton";
-import { BasketProduct } from "./components/BasketProduct";
-import { EmptyBasket } from "./components/EmptyBasket";
+import { clearBasket } from "../../redux_toolkit/slices/basket_slice";
+import { EmptyBasket } from "./EmptyBasket";
+import { BasketProduct } from "./BasketProduct";
+import { MyButton } from "../../UI/MyButton";
 
 export const Basket = () => {
   const { items, totalPrice } = useSelector(({ basket }) => basket);

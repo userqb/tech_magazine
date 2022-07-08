@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { MyButton } from "./../../UI/MyButton";
+import { MyButton } from "../UI/MyButton";
 
 export const Product = ({
   id,
@@ -9,6 +9,7 @@ export const Product = ({
   image,
   addProductToBasket,
   onClickProduct,
+  valueBtn,
   ...props
 }) => {
   return (
@@ -26,7 +27,7 @@ export const Product = ({
         className="btn"
         onClick={() => addProductToBasket({ id, name, price, image })}
       >
-        Добавить
+        {valueBtn}
       </MyButton>
     </div>
   );

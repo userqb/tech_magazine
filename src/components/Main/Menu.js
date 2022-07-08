@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export const Category = () => {
+export const Menu = () => {
   return (
     <ul className="container__menu">
       <li className="container__item">

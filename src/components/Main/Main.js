@@ -1,13 +1,12 @@
 import React from "react";
-import { Category } from "./components/Menu";
-import { Navbar } from "./components/Category";
-import { Slider } from "./components/Slider";
-import { Login } from "./Login";
-import { MainProducts } from "./components/MainProducts";
 import { useDispatch, useSelector } from "react-redux";
-import { FilterCategory } from "../redux_toolkit/slices/filter_slice";
-import { setProductId } from "../redux_toolkit/slices/test_slice";
-import banner from "../images/hh.png";
+import { FilterCategory } from "../../redux_toolkit/slices/filter_slice";
+import banner from "../../images/hh.png";
+import { Category } from "../Category/Category";
+import { Slider } from "./Slider";
+import { Login } from "../Login/Login";
+import { MainProducts } from "./MainProducts";
+import { Menu } from "./Menu";
 
 export const Main = () => {
   const { categoryId } = useSelector(({ filter }) => filter);
@@ -22,13 +21,10 @@ export const Main = () => {
     <div className="content">
       <div className="container">
         <div className="container__inner">
-          <Navbar />
+          <Category />
           <div className="container__middle">
             <div className="">
-              <Category
-                onClickCategory={onClickCategory}
-                categoryId={categoryId}
-              />
+              <Menu onClickCategory={onClickCategory} categoryId={categoryId} />
               <Slider />
               <div className="container__banner">
                 <img
@@ -41,7 +37,14 @@ export const Main = () => {
             <Login />
           </div>
         </div>
-        <div className="content__banner"></div>
+        <div className="content__banner">
+          <div className="content__banner-inner">
+            <div className="banner_anim__img">картинка</div>
+            <div className="banner_anim__img">картинка</div>
+            <div className="banner_anim__img">картинка</div>
+          </div>
+          <div className="banner_anim__text">Покупай больше, живи лучше!</div>
+        </div>
         <div>
           <MainProducts />
         </div>

@@ -36,6 +36,7 @@ a {
   max-width: 1220px;
   padding: 0 10px;
   margin: 0 auto;
+  text-align: center;
 }
 
 .header {
@@ -207,21 +208,51 @@ a {
 }
 
 .footer__inner {
-  border-radius: 20px;
-  background-color: #c0c0c0;
-  height: 300px;
+  display: flex;
+  justify-content: space-between;
+  height: 250px;
   width: auto;
-  margin: 10px;
+  padding: 10px;
+}
+
+.footer__link {
+  margin: 0 auto;
+}
+
+.footer {
+  background-color: #c0c0c0;
 }
 
 .footer__logo {
   margin-top: 20px;
 }
 
-.footer__networks,
+.footer__network,
 .footer__magazine,
 .footer__info {
   display: flex;
+}
+
+.footer__info {
+  width: 500px;
+  margin-left: 20px;
+  margin: 0 auto;
+}
+
+.network__img {
+  margin-right: 15px;
+}
+
+.footer__networks {
+  margin-right: 70px;
+}
+
+.footer__magazine {
+  margin-top: 20px;
+}
+
+.footer__network {
+  margin-top: 70px;
 }
 
 .basket {
@@ -230,6 +261,10 @@ a {
 
 .basket__logo {
   color: white;
+}
+
+.basket__empty {
+  text-align: center;
 }
 
 .basket__empty__img {
@@ -389,4 +424,17 @@ a {
 
 .reviews {
   margin-top: 30px;
+}
+
+.stars_img:active {
+  filter: invert(1);
+}
+
+.content__banner-inner {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.account-inner {
 }

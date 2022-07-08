@@ -1,20 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getStateToBasket } from "./../../utils/getStateToBasket";
 
-const initialState = {
-  productId: null,
-};
+const initialState = getStateToBasket();
 
 const TestSlice = createSlice({
   name: "test_slice",
   initialState,
   reducers: {
     setProductId(state, action) {
-      console.log(action);
       state.productId = action.payload.id;
+    },
+    setArray(state, action) {
+      state.array.push(action.payload);
+    },
+    setOrderProduct(state, action) {
+      state.items = action.payload;
     },
   },
 });
 
-export const { setProductId } = TestSlice.actions;
+export const { setProductId, setArray, setOrderProduct } = TestSlice.actions;
 
 export default TestSlice.reducer;

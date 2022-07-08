@@ -7,14 +7,18 @@ const arrayCategory = [
   { id: 2, path: "/appliances", category: "Бытовая техника" },
 ];
 
-export const Navbar = () => {
+export const Category = () => {
   return (
     <nav className="category">
       <h2>Категории</h2>
       <ul className="container__category">
         {arrayCategory.map((item) => {
           return (
-            <li onClick={() => console.log(item.id)} className="category__item">
+            <li
+              key={item.id}
+              onClick={() => console.log(item.id)}
+              className="category__item"
+            >
               <Link to={item.path} className="category__link">
                 {item.category}
               </Link>
@@ -25,5 +29,3 @@ export const Navbar = () => {
     </nav>
   );
 };
-
-// onClick={onClickCategory(i)}
