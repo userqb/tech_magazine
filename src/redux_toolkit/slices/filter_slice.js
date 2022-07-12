@@ -2,22 +2,27 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   searchValue: "",
-  categoryId: 0,
+  categoryId: null,
+  menuItem: null,
 };
 
 const FilterSlice = createSlice({
   name: "filter",
   initialState,
   reducers: {
-    FilterCategory(state, action) {
+    setFilterCategory(state, action) {
       state.categoryId = action.payload;
     },
     setSearchValue(state, action) {
       state.searchValue = action.payload;
     },
+    setFilterMenu(state, action) {
+      state.menuItem = action.payload;
+    },
   },
 });
 
-export const { FilterCategory, setSearchValue } = FilterSlice.actions;
+export const { setFilterCategory, setSearchValue, setFilterMenu } =
+  FilterSlice.actions;
 
 export default FilterSlice.reducer;

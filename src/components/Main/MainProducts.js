@@ -8,6 +8,7 @@ import { fetchProducts } from "./../../redux_toolkit/slices/main_slice";
 
 export const MainProducts = () => {
   const { items, status } = useSelector(({ main }) => main);
+  const { categoryId, menuItem } = useSelector(({ filter }) => filter);
 
   const dispatch = useDispatch();
 
@@ -16,8 +17,8 @@ export const MainProducts = () => {
   };
 
   React.useEffect(() => {
-    dispatch(fetchProducts());
-  }, []);
+    dispatch(fetchProducts(categoryId, menuItem));
+  }, [categoryId, menuItem]);
 
   const addProductToBasket = (obj) => {
     dispatch(setProductBasket(obj));

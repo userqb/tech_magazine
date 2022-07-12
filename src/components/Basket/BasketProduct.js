@@ -11,10 +11,6 @@ import { MyButton } from "./../../UI/MyButton";
 export const BasketProduct = ({ id, name, image, price, count }) => {
   const dispatch = useDispatch();
 
-  const onClickMinus = () => {
-    dispatch(minusItem({ id }));
-  };
-
   const onClickPlus = () => {
     dispatch(setProductBasket({ id }));
   };
@@ -25,8 +21,16 @@ export const BasketProduct = ({ id, name, image, price, count }) => {
     }
   };
 
+  const onClickMinus = () => {
+    if (count == 0) {
+      return deleteItem();
+    } else {
+      dispatch(minusItem({ id }));
+    }
+  };
+
   const onClickOrder = () => {
-    let obj = { id, name, image };
+    let obj = { id, name, image, price, count };
     dispatch(setOrderProduct(obj));
   };
 

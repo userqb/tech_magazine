@@ -1,29 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export const Menu = () => {
+export const Menu = ({ onClickMenuItem }) => {
+  const menuArray = ["Бренды", "Распродажи", "Скидки"];
+
   return (
     <ul className="container__menu">
-      <li className="container__item">
-        <Link to="/" className="container__link">
-          Бренды
-        </Link>
-      </li>
-      <li className="container__item">
-        <Link to="/" className="container__link">
-          От 90 руб
-        </Link>
-      </li>
-      <li className="container__item">
-        <Link to="/" className="container__link">
-          Распродажи
-        </Link>
-      </li>
-      <li className="container__item">
-        <Link to="/" className="container__link">
-          Скидки
-        </Link>
-      </li>
+      {menuArray.map((item, i) => {
+        return (
+          <li
+            onClick={() => onClickMenuItem(i + 1)}
+            key={`${item}_${i + 1}`}
+            className="container__item"
+          >
+            {item}
+          </li>
+        );
+      })}
     </ul>
   );
 };

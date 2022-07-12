@@ -1,27 +1,33 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-const arrayCategory = [
-  { id: 0, path: "/computers", category: "Компьютеры и оргтехника" },
-  { id: 1, path: "/phones", category: "Телефоны и аксессуары" },
-  { id: 2, path: "/appliances", category: "Бытовая техника" },
-];
+export const Category = ({ activeValue, onClickCategory }) => {
+  const arrayCategory = [
+    "Компьютеры и оргтехника",
+    "Телефоны и аксессуары",
+    "Бытовая техника",
+  ];
 
-export const Category = () => {
   return (
     <nav className="category">
       <h2>Категории</h2>
       <ul className="container__category">
-        {arrayCategory.map((item) => {
+        <li className="category__item" onClick={() => onClickCategory(null)}>
+          Все категории
+        </li>
+        {arrayCategory.map((item, i) => {
           return (
             <li
-              key={item.id}
-              onClick={() => console.log(item.id)}
-              className="category__item"
+              key={`${item}_${i + 1}`}
+              onClick={() => onClickCategory(i + 1)}
+              className={
+                activeValue === i + 1
+                  ? "category__item__active"
+                  : "category__item"
+              }
             >
-              <Link to={item.path} className="category__link">
-                {item.category}
-              </Link>
+              {item}
             </li>
           );
         })}

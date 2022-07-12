@@ -9,11 +9,9 @@ export const Product = ({
   image,
   addProductToBasket,
   onClickProduct,
-  valueBtn,
-  ...props
 }) => {
   return (
-    <div {...props}>
+    <div className="product">
       <Link to="/">
         <img
           onClick={() => onClickProduct({ id, name, price, image })}
@@ -27,7 +25,7 @@ export const Product = ({
         className="btn"
         onClick={() => addProductToBasket({ id, name, price, image })}
       >
-        {valueBtn}
+        Добавить
       </MyButton>
     </div>
   );

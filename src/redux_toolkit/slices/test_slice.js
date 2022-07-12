@@ -1,24 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getStateToBasket } from "./../../utils/getStateToBasket";
 
-const initialState = getStateToBasket();
+const initialState = {
+  items: [],
+  totalPtice: 0,
+};
 
 const TestSlice = createSlice({
   name: "test_slice",
   initialState,
   reducers: {
-    setProductId(state, action) {
-      state.productId = action.payload.id;
+    setOrderProduct(state, action) {
+      state.items.push(action.payload);
+      state.totalPtice = state.items.reduce((sum, item) => {
+        return item.price + sum;
+      }, 0);
     },
     setArray(state, action) {
-      state.array.push(action.payload);
-    },
-    setOrderProduct(state, action) {
-      state.items = action.payload;
+      state.items.push(action.payload);
     },
   },
 });
 
-export const { setProductId, setArray, setOrderProduct } = TestSlice.actions;
+export const { setOrderProduct, setArray } = TestSlice.actions;
 
 export default TestSlice.reducer;

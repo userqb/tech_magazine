@@ -25,19 +25,16 @@ const BasketSlice = createSlice({
       if (minusItem) {
         minusItem.count--;
       }
+
       state.totalPrice = getTotalPrice(state.items);
     },
     removeItem(state, action) {
       state.items = state.items.filter((obj) => obj.id != action.payload);
       state.totalPrice = getTotalPrice(state.items);
     },
-    clearItem(state) {
-      state.items = [];
-      state.totalPrice = 0;
-    },
     clearBasket(state) {
       state.items = [];
-      state.totalPrice = 0;
+      // state.totalPrice = 0;
     },
   },
 });

@@ -1,5 +1,6 @@
 import React from "react";
+import preloader from "../images/preloader.gif";
 
 export const Preloader = () => {
-  return <div className="preloader"></div>;
+  return <img className="preloader" src={preloader} />;
 };

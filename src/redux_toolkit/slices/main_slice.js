@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import pickBy from "lodash/pickBy";
+import identity from "lodash/identity";
 
 const initialState = {
   items: [],
@@ -8,12 +10,13 @@ const initialState = {
 
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
-  async () => {
+  async (categoryId, menuItem) => {
     const response = await axios.get(
-      "https://629ef7298b939d3dc28b2d3b.mockapi.io/products"
+      `https://629ef7298b939d3dc28b2d3b.mockapi.io/products?${
+        categoryId !== null ? `category=${categoryId}` : ""
+      }&_sort=${menuItem}`
     );
-    const data = await response.data;
-    return data;
+    return response.data;
   }
 );
 

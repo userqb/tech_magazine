@@ -4,6 +4,7 @@ import { clearBasket } from "../../redux_toolkit/slices/basket_slice";
 import { EmptyBasket } from "./EmptyBasket";
 import { BasketProduct } from "./BasketProduct";
 import { MyButton } from "../../UI/MyButton";
+import { Preloader } from "../Preloader";
 
 export const Basket = () => {
   const { items, totalPrice } = useSelector(({ basket }) => basket);
