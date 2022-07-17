@@ -46,6 +46,14 @@ export const Header = () => {
               />
             </Link>
           </div>
+          <div className="header__basket">
+            <Link className="basket__link" to="/reviews">
+              <img
+                className="basket__logo"
+                src="https://img.icons8.com/material-outlined/24/000000/user-male-circle.png"
+              />
+            </Link>
+          </div>
         </div>
       </div>
     </header>

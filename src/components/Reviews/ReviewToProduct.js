@@ -1,17 +1,20 @@
 import React from "react";
 
-export const ReviewToProduct = (item, deleteSelected) => {
-  const [activeImg, setActiveImg] = React.useState(null);
-
+export const ReviewToProduct = ({
+  body,
+  deleteSelected,
+  image,
+  name,
+  grade,
+}) => {
   return (
     <div className="review_product">
       <div className="review_product-inner">
-        <img className="review_product__img" src="#" />
-        <h2 className="review_product__name">Название продукта</h2>
+        <img className="review_product__img" src={image} />
+        <h2 className="review_product__name">{name}</h2>
         <div className="stars">
           <img
-            className={activeImg ? "stars_img" : "active"}
-            onClick={() => setActiveImg()}
+            className=""
             src="https://img.icons8.com/emoji/48/000000/thumbs-up.png"
           />
           <img
@@ -20,7 +23,7 @@ export const ReviewToProduct = (item, deleteSelected) => {
           />
         </div>
       </div>
-      <div className="review">{item.body}</div>
+      <div className="review">{body}</div>
     </div>
   );
 };

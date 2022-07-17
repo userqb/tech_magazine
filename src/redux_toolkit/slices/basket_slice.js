@@ -9,23 +9,18 @@ const BasketSlice = createSlice({
   initialState,
   reducers: {
     setProductBasket(state, action) {
-      const questItem = state.items.find((obj) => obj.id === action.payload.id);
-      if (questItem) {
-        questItem.count++;
-      } else {
-        state.items.push({
-          ...action.payload,
-          count: 1,
-        });
-      }
+      const newItem = state.items.find((obj) => obj.id === action.payload.id);
+      newItem
+        ? newItem.count++
+        : state.items.push({
+            ...action.payload,
+            count: 1,
+          });
       state.totalPrice = getTotalPrice(state.items);
     },
     minusItem(state, action) {
       const minusItem = state.items.find((obj) => obj.id === action.payload.id);
-      if (minusItem) {
-        minusItem.count--;
-      }
-
+      minusItem ?? minusItem.count--;
       state.totalPrice = getTotalPrice(state.items);
     },
     removeItem(state, action) {

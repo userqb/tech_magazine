@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { setProductElecteds } from "../../redux_toolkit/slices/account_slice";
 import {
   minusItem,
   removeItem,
@@ -8,7 +9,14 @@ import {
 import { setOrderProduct } from "../../redux_toolkit/slices/test_slice";
 import { MyButton } from "./../../UI/MyButton";
 
-export const BasketProduct = ({ id, name, image, price, count }) => {
+export const BasketProduct = ({
+  id,
+  name,
+  image,
+  price,
+  count,
+  description,
+}) => {
   const dispatch = useDispatch();
 
   const onClickPlus = () => {
@@ -22,7 +30,7 @@ export const BasketProduct = ({ id, name, image, price, count }) => {
   };
 
   const onClickMinus = () => {
-    if (count == 0) {
+    if (count == 1) {
       return deleteItem();
     } else {
       dispatch(minusItem({ id }));
@@ -32,6 +40,11 @@ export const BasketProduct = ({ id, name, image, price, count }) => {
   const onClickOrder = () => {
     let obj = { id, name, image, price, count };
     dispatch(setOrderProduct(obj));
+  };
+
+  const onClickElected = () => {
+    let obj = { id, name, image, price, description };
+    dispatch(setProductElecteds(obj));
   };
 
   return (
@@ -47,7 +60,7 @@ export const BasketProduct = ({ id, name, image, price, count }) => {
       <div className="basket-product__count">
         <img
           className="basket_product__svg"
-          onClick={() => console.log("start work img")}
+          onClick={onClickElected}
           src="https://img.icons8.com/material/24/000000/like--v1.png"
         />
         <img

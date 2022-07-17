@@ -8,6 +8,7 @@ export const AccountProduct = ({
   price,
   description,
   deleteProduct,
+  valueBtn,
 }) => {
   const deleteOn = () => {
     if (window.confirm("Вы действительно хотите удалить товар?"))
@@ -22,6 +23,7 @@ export const AccountProduct = ({
         <p>{description}</p>
       </div>
       <h3>{price}руб</h3>
+      <MyButton>{valueBtn}</MyButton>
       <MyButton onClick={deleteOn} className="btn_red">
         Удалить
       </MyButton>

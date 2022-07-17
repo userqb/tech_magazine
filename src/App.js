@@ -13,6 +13,7 @@ function App() {
   return (
     <div className="App">
       <Header />
+      <br />
       <div className="app_interval">
         <Routes>
           <Route path="/" element={<Main />} />
@@ -21,6 +22,8 @@ function App() {
           <Route path="/order" element={<Order />} />
           <Route path="/account" element={<Account />} />
           <Route path="/redirect" element={<Navigate to="/order" />} />
+          <Route path="product/:id" element={<Reviews />} />
+          {/* <Route path= element={<Order />} /> */}
         </Routes>
       </div>
       <Footer />

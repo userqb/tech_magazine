@@ -10,6 +10,7 @@ import { Slider } from "./Slider";
 import { Login } from "../Login/Login";
 import { MainProducts } from "./MainProducts";
 import { Menu } from "./Menu";
+import { AnimationBanner } from "./AnimationBanner";
 
 export const Main = () => {
   const { categoryId, menuItem } = useSelector(({ filter }) => filter);
@@ -53,14 +54,7 @@ export const Main = () => {
             </div>
           )}
         </div>
-        <div className="content__banner">
-          <div className="content__banner-inner">
-            <div className="banner_anim__img">картинка</div>
-            <div className="banner_anim__img">картинка</div>
-            <div className="banner_anim__img">картинка</div>
-          </div>
-          <div className="banner_anim__text">Покупай больше, живи лучше!</div>
-        </div>
+        <AnimationBanner />
         {categoryId !== null ? null : (
           <div>
             <MainProducts />

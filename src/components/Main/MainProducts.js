@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { setProductBasket } from "../../redux_toolkit/slices/basket_slice";
 import { setArray } from "../../redux_toolkit/slices/test_slice";
 import { Preloader } from "../Preloader";
@@ -12,12 +13,12 @@ export const MainProducts = () => {
 
   const dispatch = useDispatch();
 
-  const onClickProduct = (obj) => {
-    dispatch(setArray(obj));
-  };
+  // const onClickProduct = (obj) => {
+  //   dispatch(setArray(obj));
+  // };
 
   React.useEffect(() => {
-    dispatch(fetchProducts(categoryId, menuItem));
+    dispatch(fetchProducts({ categoryId, menuItem }));
   }, [categoryId, menuItem]);
 
   const addProductToBasket = (obj) => {
@@ -27,10 +28,10 @@ export const MainProducts = () => {
   return (
     <div>
       {status === "error" ? (
-        <div>
+        <h2>
           Ошибка загрузки товаров! Пожалуйства, перезагрузите страницу или
           загляните к нам попозже.
-        </div>
+        </h2>
       ) : (
         <div>
           {status === "loading" ? (
@@ -46,8 +47,8 @@ export const MainProducts = () => {
                     key={obj.id}
                     {...obj}
                     addProductToBasket={addProductToBasket}
-                    onClickProduct={onClickProduct}
-                    valueBtn="Добавить"
+                    // onClickProduct={onClickProduct}
+                    pathProduct={obj.id}
                   />
                 );
               })}

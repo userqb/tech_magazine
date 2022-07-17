@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   review: [],
-  value: "",
+  value: { body: "" },
 };
 
 const ReviewSlice = createSlice({
@@ -13,7 +13,12 @@ const ReviewSlice = createSlice({
       state.value = action.payload;
     },
     setReview(state, action) {
-      state.review = action.payload;
+      console.log(action.payload);
+      const newReview = {
+        ...state.value,
+        id: Date.now(),
+      };
+      state.review = [...action.payload.value, newReview];
     },
   },
 });
