@@ -5,7 +5,7 @@ import { Product } from "../Product";
 import { OrderProduct } from "./OrderProduct";
 
 export const Order = () => {
-  const { items, totalPtice } = useSelector(({ test_slice }) => test_slice);
+  const { items, totalPtice } = useSelector(({ order }) => order);
 
   return (
     <div className="order">

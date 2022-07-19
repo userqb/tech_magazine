@@ -16,9 +16,6 @@ const FilterSlice = createSlice({
     setSearchValue(state, action) {
       state.searchValue = action.payload;
     },
-    setFilterMenu(state, action) {
-      state.menuItem = action.payload;
-    },
   },
 });
 

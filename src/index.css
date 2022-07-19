@@ -461,3 +461,12 @@ a {
   display: flex;
   flex-wrap: wrap;
 }
+
+.container__item {
+  cursor: pointer;
+}
+
+.container__categories {
+  display: flex;
+  justify-content: space-around;
+}

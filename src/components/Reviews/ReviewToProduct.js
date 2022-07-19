@@ -10,8 +10,8 @@ export const ReviewToProduct = ({
   return (
     <div className="review_product">
       <div className="review_product-inner">
-        <img className="review_product__img" src={image} />
-        <h2 className="review_product__name">{name}</h2>
+        <img className="product__img" src={image} />
+        <h2 className="basket-product__name">{name}</h2>
         <div className="stars">
           <img
             className=""

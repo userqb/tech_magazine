@@ -17,10 +17,6 @@ export const Main = () => {
 
   const dispatch = useDispatch();
 
-  const onClickMenuItem = (index) => {
-    dispatch(setFilterMenu(index));
-  };
-
   const onClickCategory = (index) => {
     dispatch(setFilterCategory(index));
   };
@@ -29,14 +25,16 @@ export const Main = () => {
     <div className="content">
       <div className="container">
         <div className="container__inner">
-          <Category
-            activeValue={categoryId}
-            onClickCategory={onClickCategory}
-          />
-          {categoryId == null ? (
+          <div className="container__categories">
+            <Category
+              activeValue={categoryId}
+              onClickCategory={onClickCategory}
+            />
+          </div>
+          {categoryId === null ? (
             <div className="container__middle">
-              <div className="">
-                <Menu onClickMenuItem={onClickMenuItem} />
+              <div>
+                <Menu />
                 <Slider />
                 <div className="container__banner">
                   <img

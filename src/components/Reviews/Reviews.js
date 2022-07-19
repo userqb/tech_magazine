@@ -5,12 +5,11 @@ import { MyButton } from "../../UI/MyButton";
 import { ReviewToProduct } from "./ReviewToProduct";
 import { OrderProduct } from "./../Order/OrderProduct";
 import { BasketProduct } from "./../Basket/BasketProduct";
-import { ReviewProduct } from "./ReviewProduct";
-import { setReview, setValue } from "../../redux_toolkit/slices/review_slice";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Preloader } from "./../Preloader";
+import { setProductBasket } from "../../redux_toolkit/slices/basket_slice";
 
 export const Reviews = () => {
   // const { items } = useSelector(({ test_slice }) => test_slice);
@@ -20,9 +19,6 @@ export const Reviews = () => {
 
   const { id } = useParams();
   const navigate = useNavigate();
-
-  // let newProduct = Object.fromEntries(product);
-  // console.log(newProduct);
 
   const dispatch = useDispatch();
 
@@ -50,11 +46,10 @@ export const Reviews = () => {
       ...value,
       id: Date.now(),
     };
-    dispatch(setReview());
     return (
       value.body === ""
         ? alert("Заполните форму отзыва!")
-        : dispatch(setReview([...review, newReview])),
+        : setReview([...review, newReview]),
       setValue({ body: "" })
     );
   };
@@ -63,9 +58,15 @@ export const Reviews = () => {
   //   setReview(review.filter((i) => i.id !== item.id));
   // };
 
-  // const addBasket = ()=>{
-
-  // }
+  const addBasket = () => {
+    const obj = {
+      id: product.id,
+      name: product.name,
+      image: product.image,
+      price: product.price,
+    };
+    dispatch(setProductBasket(obj));
+  };
 
   return (
     <div className="reviews">
@@ -85,7 +86,9 @@ export const Reviews = () => {
                   {product.description}
                 </h4>
               </div>
-              <MyButton className="btn">Добавить в корзину</MyButton>
+              <MyButton onClick={addBasket} className="btn">
+                Добавить в корзину
+              </MyButton>
             </div>
           </div>
           <div>
@@ -108,7 +111,12 @@ export const Reviews = () => {
           </div>
         </div>
         {review.map((item) => (
-          <ReviewToProduct key={item.id} {...item} />
+          <ReviewToProduct
+            key={item.id}
+            {...item}
+            image={product.image}
+            name={product.name}
+          />
         ))}
       </div>
     </div>

@@ -5,10 +5,11 @@ import { getTotalPrice } from "../../utils/getTotalPrice";
 const initialState = getStateToBasket();
 
 const BasketSlice = createSlice({
-  name: "basket",
+  name: "basket_slice",
   initialState,
   reducers: {
     setProductBasket(state, action) {
+      console.log(action);
       const newItem = state.items.find((obj) => obj.id === action.payload.id);
       newItem
         ? newItem.count++
@@ -20,7 +21,7 @@ const BasketSlice = createSlice({
     },
     minusItem(state, action) {
       const minusItem = state.items.find((obj) => obj.id === action.payload.id);
-      minusItem ?? minusItem.count--;
+      if (minusItem) minusItem.count--;
       state.totalPrice = getTotalPrice(state.items);
     },
     removeItem(state, action) {
@@ -29,7 +30,7 @@ const BasketSlice = createSlice({
     },
     clearBasket(state) {
       state.items = [];
-      // state.totalPrice = 0;
+      state.totalPrice = 0;
     },
   },
 });

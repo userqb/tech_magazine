@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setProductBasket } from "../../redux_toolkit/slices/basket_slice";
-import { setArray } from "../../redux_toolkit/slices/test_slice";
+import { setArray } from "../../redux_toolkit/slices/order_slice";
 import { Preloader } from "../Preloader";
 import { Product } from "../Product";
 import { fetchProducts } from "./../../redux_toolkit/slices/main_slice";
@@ -18,8 +18,8 @@ export const MainProducts = () => {
   // };
 
   React.useEffect(() => {
-    dispatch(fetchProducts({ categoryId, menuItem }));
-  }, [categoryId, menuItem]);
+    dispatch(fetchProducts({ categoryId }));
+  }, [categoryId]);
 
   const addProductToBasket = (obj) => {
     dispatch(setProductBasket(obj));

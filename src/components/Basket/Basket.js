@@ -8,10 +8,24 @@ import { Preloader } from "../Preloader";
 
 export const Basket = () => {
   const { items, totalPrice } = useSelector(({ basket }) => basket);
+  // const countItem = useSelector(countItemID(id));
+
+  // const countItemID = (id) => (state) => {
+  //   state.basket.items.find((obj) => obj.id === id);
+  // };
 
   const dispatch = useDispatch();
+  const isMounted = React.useRef(false);
 
   const totalCount = items.reduce((sum, item) => sum + item.count, 0);
+
+  React.useEffect(() => {
+    if (isMounted.current) {
+      const json = JSON.stringify();
+      localStorage.setItem("basket", json);
+    }
+    isMounted.current = true;
+  }, [items]);
 
   if (!totalCount) {
     return <EmptyBasket />;

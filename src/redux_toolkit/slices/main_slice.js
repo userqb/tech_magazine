@@ -10,12 +10,12 @@ const initialState = {
 
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
-  async (params) => {
-    const { categoryId, menuItem } = params;
+  async ({ categoryId, menuItem }) => {
+    console.log({ categoryId, menuItem });
     const response = await axios.get(
       `https://629ef7298b939d3dc28b2d3b.mockapi.io/products?${
         categoryId !== null ? `category=${categoryId}` : ""
-      }&sortBy=${menuItem}`
+      }&sortBy=${menuItem !== null ? `sortBy=${menuItem}` : ""}`
     );
     return response.data;
   }

@@ -18,12 +18,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/basket" element={<Basket />} />
-          <Route path="/reviews" element={<Reviews />} />
           <Route path="/order" element={<Order />} />
           <Route path="/account" element={<Account />} />
           <Route path="/redirect" element={<Navigate to="/order" />} />
           <Route path="product/:id" element={<Reviews />} />
-          {/* <Route path= element={<Order />} /> */}
         </Routes>
       </div>
       <Footer />

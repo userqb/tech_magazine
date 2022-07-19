@@ -1,5 +1,5 @@
 import React from "react";
-import BasketEmpty from "../../images/basket_img.jpg";
+import BasketEmpty from "../../images/basket_img.png";
 
 export const EmptyBasket = () => {
   return (
