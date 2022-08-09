@@ -1,25 +1,19 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { setProductBasket } from "../../redux_toolkit/slices/basket_slice";
-import { setArray } from "../../redux_toolkit/slices/order_slice";
 import { Preloader } from "../Preloader";
 import { Product } from "../Product";
 import { fetchProducts } from "./../../redux_toolkit/slices/main_slice";
 
 export const MainProducts = () => {
-  const { items, status } = useSelector(({ main }) => main);
-  const { categoryId, menuItem } = useSelector(({ filter }) => filter);
+  const { items, status, searchValue } = useSelector(({ main }) => main);
+  const { categoryId } = useSelector(({ filter }) => filter);
 
   const dispatch = useDispatch();
 
-  // const onClickProduct = (obj) => {
-  //   dispatch(setArray(obj));
-  // };
-
   React.useEffect(() => {
-    dispatch(fetchProducts({ categoryId }));
-  }, [categoryId]);
+    dispatch(fetchProducts({ categoryId, searchValue }));
+  }, [categoryId, searchValue]);
 
   const addProductToBasket = (obj) => {
     dispatch(setProductBasket(obj));
@@ -47,7 +41,6 @@ export const MainProducts = () => {
                     key={obj.id}
                     {...obj}
                     addProductToBasket={addProductToBasket}
-                    // onClickProduct={onClickProduct}
                     pathProduct={obj.id}
                   />
                 );

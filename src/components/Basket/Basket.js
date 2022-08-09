@@ -8,11 +8,6 @@ import { Preloader } from "../Preloader";
 
 export const Basket = () => {
   const { items, totalPrice } = useSelector(({ basket }) => basket);
-  // const countItem = useSelector(countItemID(id));
-
-  // const countItemID = (id) => (state) => {
-  //   state.basket.items.find((obj) => obj.id === id);
-  // };
 
   const dispatch = useDispatch();
   const isMounted = React.useRef(false);

@@ -1,124 +1,83 @@
 import React from "react";
-import { Formik } from "formik";
+import { useFormik } from "formik";
 import * as yup from "yup";
 
-export const RegistrationForm = () => {
+export const LoginForm = () => {
+  const passwordRules =
+    /^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&]{5,}$/;
+
   const validationForm = yup.object().shape({
-    name: yup.string().typeError("ошибка").required("поле обязательно"),
-    secondName: yup.string().typeError("ошибка").required("поле обязательно"),
     email: yup
       .string()
-      .email("Введен не вырный email")
-      .required("поле обязательно"),
-    password: yup.string().typeError("ошибка").required("поле обязательно"),
+      .email("Пожалуйста введите корректный email!")
+      .required("Обязательное поле!"),
+    password: yup
+      .string()
+      .typeError("ошибка")
+      .min(5)
+      .matches(passwordRules, { message: "Хороший пароль!" })
+      .required("Обязательное поле!"),
     confirmPassword: yup
       .string()
-      .oneOf([yup.ref("password")], "Пароль не соответствует")
-      .required("поле обязательно"),
+      .typeError("ошибка")
+      .oneOf([yup.ref("password"), "Пароль не соответствует!"])
+      .required("Обязательное поле!"),
   });
 
+  const { handleSubmit, values, handleChange, handleBlur, errors, touched } =
+    useFormik({
+      initialValues: {
+        email: "",
+        password: "",
+        confirmPassword: "",
+      },
+      validationSchema: validationForm,
+      onSubmit() {
+        console.log("ass");
+      },
+    });
+
   return (
-    <div>
-      <Formik
-        initialValues={{
-          name: "",
-          secondName: "",
-          email: "",
-          password: "",
-          confirmPassword: "",
-        }}
-        validateOnBlur
-        onSubmit={(values) => {
-          console.log(values);
-        }}
-        validationForm={validationForm}
-      >
-        {({
-          values,
-          errors,
-          touched,
-          handleChange,
-          handleBlur,
-          isValid,
-          handleSubmit,
-          dirty,
-        }) => (
-          <div className="registration_form">
-            <p>
-              <label htmlFor={"name"}>Имя</label>
-              <input
-                type={"text"}
-                name={"name"}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.name}
-              />
-              {touched.name && errors.name && (
-                <p className={"form__item"}>{errors.name}</p>
-              )}
-            </p>
-            <p>
-              <label htmlFor={"secondName"}>Фамилия</label>
-              <input
-                type={"text"}
-                name={"secondName"}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.secondName}
-              />
-              {touched.secondName && errors.secondName && (
-                <p className={"form__item"}>{errors.secondName}</p>
-              )}
-            </p>
-            <p>
-              <label htmlFor={"email"}>Email</label>
-              <input
-                type={"text"}
-                name={"email"}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.email}
-              />
-              {touched.email && errors.email && (
-                <p className={"form__item"}>{errors.email}</p>
-              )}
-            </p>
-            <p>
-              <label htmlFor={"password"}>Пароль</label>
-              <input
-                type={"password"}
-                name={"password"}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.password}
-              />
-              {touched.password && errors.password && (
-                <p className={"form__item"}>{errors.password}</p>
-              )}
-            </p>
-            <p>
-              <label htmlFor={"confirmPassword"}>Подтверждение пароля</label>
-              <input
-                type={"password"}
-                name={"confirmPassword"}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.confirmPassword}
-              />
-              {touched.confirmPassword && errors.confirmPassword && (
-                <p className={"form__item"}>{errors.confirmPassword}</p>
-              )}
-            </p>
-            <button
-              disabled={!isValid && !dirty}
-              onClick={handleSubmit}
-              type={"submit"}
-            >
-              set
-            </button>
-          </div>
-        )}
-      </Formik>
-    </div>
+    <form className="login_form" onSubmit={handleSubmit} autoComplete="off">
+      <div>
+        <strong>Вход</strong>
+      </div>
+      <label className="form_label">Почтовый адрес:</label>
+      <input
+        value={values.email}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        id="email"
+        type="email"
+        className="validate_input"
+      />
+      {errors.email && touched.email && (
+        <p className="error_text">{errors.email}</p>
+      )}
+      <label className="form_label">Пароль:</label>
+      <input
+        value={values.password}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        id="password"
+        type="password"
+        className="validate_input"
+      />
+      {errors.password && touched.password && (
+        <p className="error_text">{errors.password}</p>
+      )}
+      <label className="form_label">Подтверждение пароля:</label>
+      <input
+        value={values.confirmPassword}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        id="confirmPassword"
+        type="confirmPassword"
+        className="validate_input"
+      />
+      {errors.confirmPassword && touched.confirmPassword && (
+        <p className="error_text">{errors.confirmPassword}</p>
+      )}
+    </form>
   );
 };

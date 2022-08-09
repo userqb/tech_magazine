@@ -13,9 +13,14 @@ import { Menu } from "./Menu";
 import { AnimationBanner } from "./AnimationBanner";
 
 export const Main = () => {
-  const { categoryId, menuItem } = useSelector(({ filter }) => filter);
+  const { categoryId } = useSelector(({ filter }) => filter);
+  const { searchValue } = useSelector(({ main }) => main);
 
   const dispatch = useDispatch();
+
+  const onClickMenu = (index) => {
+    dispatch(setFilterMenu(index));
+  };
 
   const onClickCategory = (index) => {
     dispatch(setFilterCategory(index));
@@ -31,10 +36,10 @@ export const Main = () => {
               onClickCategory={onClickCategory}
             />
           </div>
-          {categoryId === null ? (
+          {categoryId === null && searchValue === "" ? (
             <div className="container__middle">
               <div>
-                <Menu />
+                <Menu onClickMenu={onClickMenu} />
                 <Slider />
                 <div className="container__banner">
                   <img
@@ -53,7 +58,7 @@ export const Main = () => {
           )}
         </div>
         <AnimationBanner />
-        {categoryId !== null ? null : (
+        {categoryId !== null && searchValue !== "" ? null : (
           <div>
             <MainProducts />
           </div>

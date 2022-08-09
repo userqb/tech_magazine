@@ -8,6 +8,7 @@ import { Order } from "./components/Order/Order";
 import { Account } from "./components/Account/Account";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
+import { LoginForm } from "./components/Login/LoginForm";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/account" element={<Account />} />
           <Route path="/redirect" element={<Navigate to="/order" />} />
           <Route path="product/:id" element={<Reviews />} />
+          <Route path="/login" element={<LoginForm />} />
         </Routes>
       </div>
       <Footer />

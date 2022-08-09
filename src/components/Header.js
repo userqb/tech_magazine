@@ -1,8 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../images/logo.png";
+import { useDispatch } from "react-redux";
+import { setSearchValue } from "../redux_toolkit/slices/main_slice";
 
 export const Header = () => {
+  const [value, setValue] = React.useState("");
+  const inputRef = React.useRef(null);
+
+  const dispatch = useDispatch();
+
+  const setSearch = (str) => {
+    dispatch(setSearchValue(str));
+  };
+
+  const onChangeInput = (event) => {
+    console.log(event.target.value);
+    setValue(event.target.value);
+    setSearch(event.target.value);
+  };
+
   return (
     <header className="header">
       <div className="container">
@@ -14,7 +31,14 @@ export const Header = () => {
             <span className="logo__span"> Покупай больше, живи лучше! </span>
           </div>
           <div className="header__search">
-            <input className="search" type="text" placeholder="Я ищу..." />
+            <input
+              value={value}
+              ref={inputRef}
+              onChange={onChangeInput}
+              className="search"
+              type="text"
+              placeholder="Я ищу..."
+            />
             <a className="search__btn" href="#">
               <img
                 className="serch__img"

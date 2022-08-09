@@ -1,21 +1,20 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import pickBy from "lodash/pickBy";
-import identity from "lodash/identity";
 
 const initialState = {
   items: [],
+  searchValue: "",
   status: "loading",
 };
 
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
-  async ({ categoryId, menuItem }) => {
-    console.log({ categoryId, menuItem });
+  async ({ categoryId, searchValue }) => {
+    console.log({ categoryId, searchValue });
     const response = await axios.get(
       `https://629ef7298b939d3dc28b2d3b.mockapi.io/products?${
         categoryId !== null ? `category=${categoryId}` : ""
-      }&sortBy=${menuItem !== null ? `sortBy=${menuItem}` : ""}`
+      }${searchValue !== "" ? `saerch=${searchValue}` : ""}`
     );
     return response.data;
   }
@@ -27,6 +26,11 @@ const MainSlice = createSlice({
   reducers: {
     setProducts(state, action) {
       state.items = action.payload;
+    },
+    setSearchValue(state, action) {
+      state.items.filter((items) => {
+        return items.name.toLowerCase().includes(action.payload.toLowerCase());
+      });
     },
   },
   extraReducers: {
@@ -45,6 +49,6 @@ const MainSlice = createSlice({
   },
 });
 
-export const { setProducts } = MainSlice.actions;
+export const { setProducts, setSearchValue } = MainSlice.actions;
 
 export default MainSlice.reducer;
