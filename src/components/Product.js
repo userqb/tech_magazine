@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { MyButton } from "../UI/MyButton";
 
 export const Product = ({
@@ -8,17 +8,8 @@ export const Product = ({
   price,
   image,
   addProductToBasket,
-  onClickProduct,
   description,
 }) => {
-  const navigate = useNavigate();
-  // const goReview = () => navigate(`/reviews?${id}`);
-
-  // const clickProduct = () => {
-  // onClickProduct({ id, name, price, image });
-  // goReview(); onClick={clickProduct}
-  // };
-
   return (
     <div className="product">
       <Link key={id} to={`/product/${id}`}>

@@ -36,7 +36,7 @@ export const Main = () => {
               onClickCategory={onClickCategory}
             />
           </div>
-          {categoryId === null && searchValue === "" ? (
+          {categoryId === null ? (
             <div className="container__middle">
               <div>
                 <Menu onClickMenu={onClickMenu} />
@@ -58,7 +58,7 @@ export const Main = () => {
           )}
         </div>
         <AnimationBanner />
-        {categoryId !== null && searchValue !== "" ? null : (
+        {categoryId !== null ? null : (
           <div>
             <MainProducts />
           </div>

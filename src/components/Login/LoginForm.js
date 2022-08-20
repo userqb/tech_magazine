@@ -7,6 +7,7 @@ export const LoginForm = () => {
     /^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&]{5,}$/;
 
   const validationForm = yup.object().shape({
+    name: yup.string().min(3).required("Обязательное поле!"),
     email: yup
       .string()
       .email("Пожалуйста введите корректный email!")
@@ -27,13 +28,14 @@ export const LoginForm = () => {
   const { handleSubmit, values, handleChange, handleBlur, errors, touched } =
     useFormik({
       initialValues: {
+        name: "",
         email: "",
         password: "",
         confirmPassword: "",
       },
       validationSchema: validationForm,
       onSubmit() {
-        console.log("ass");
+        console.log("login");
       },
     });
 
@@ -42,6 +44,18 @@ export const LoginForm = () => {
       <div>
         <strong>Вход</strong>
       </div>
+      <label className="form_label">Ваше имя:</label>
+      <input
+        value={values.name}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        id="name"
+        type="name"
+        className="validate_input"
+      />
+      {errors.name && touched.name && (
+        <p className="error_text">{errors.name}</p>
+      )}
       <label className="form_label">Почтовый адрес:</label>
       <input
         value={values.email}
@@ -78,6 +92,7 @@ export const LoginForm = () => {
       {errors.confirmPassword && touched.confirmPassword && (
         <p className="error_text">{errors.confirmPassword}</p>
       )}
+      <button className="btn">Отправить</button>
     </form>
   );
 };

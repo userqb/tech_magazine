@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../images/logo.png";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { setSearchValue } from "../redux_toolkit/slices/main_slice";
 
 export const Header = () => {
+  const { name } = useSelector(({ auth }) => auth);
   const [value, setValue] = React.useState("");
   const inputRef = React.useRef(null);
 
@@ -56,14 +57,6 @@ export const Header = () => {
           </div>
           <div className="header__basket">
             <Link className="basket__link" to="/account">
-              <img
-                className="basket__logo"
-                src="https://img.icons8.com/material-outlined/24/000000/user-male-circle.png"
-              />
-            </Link>
-          </div>
-          <div className="header__basket">
-            <Link className="basket__link" to="/order">
               <img
                 className="basket__logo"
                 src="https://img.icons8.com/material-outlined/24/000000/user-male-circle.png"

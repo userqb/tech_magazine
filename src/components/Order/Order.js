@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { MyButton } from "../../UI/MyButton";
-import { Product } from "../Product";
 import { OrderProduct } from "./OrderProduct";
 
 export const Order = () => {
